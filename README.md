@@ -1,5 +1,7 @@
 # automagic
 
+[![Build Status](https://travis-ci.org/cole-brokamp/automagic.svg?branch=master)](https://travis-ci.org/cole-brokamp/automagic)
+
 automagic searches R code for necessary packages and installs them. In addition to `library()` and `require()`, it knows about `::` and `:::` namespaces. If the package is not on CRAN, it will attempt to install it from GitHub.
 
 ### Installation  
