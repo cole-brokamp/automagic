@@ -20,7 +20,7 @@
 
 
 automagic <- function(directory=getwd(),...) {
-  fls <- list.files(path=directory,pattern='^.*\\.R\\{md}$',
+  fls <- list.files(path=directory,pattern='^.*\\.R$|^.*\\.Rmd$',
                     full.names=TRUE,recursive=TRUE,...)
   pkg_names <- sapply(fls,parse_packages)
   sapply(pkg_names,install_package,...)
