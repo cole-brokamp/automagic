@@ -29,7 +29,9 @@ If a package is not availble in the R library, attempt to install it
   installers.
 }
 \examples{
+\dontrun{
 install_package('utils')
+}
 
 }
 \seealso{

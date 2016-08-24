@@ -27,7 +27,9 @@
 #' @seealso \code{\link{parse_packages}}, \code{\link{automagic}}
 #'
 #' @examples
+#' \dontrun{
 #' install_package('utils')
+#' }
 #'
 install_package <- function(pkg,force_install=FALSE) {
   set_repo()
