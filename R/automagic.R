@@ -6,6 +6,7 @@
 #' @param directory folder to search for R and Rmd files
 #' @param ... other arguments to \code{\link[automagic]{install_package}},
 #'   namely \code{force_install}
+#' @return invisibly returns a list of packages that were found
 #'
 #' @export
 #' @seealso \code{\link{install_package}}, \code{\link{parse_packages}}
@@ -22,7 +23,12 @@
 automagic <- function(directory=getwd(),...) {
   fls <- list.files(path=directory,pattern='^.*\\.R$|^.*\\.Rmd$',
                     full.names=TRUE,recursive=TRUE,...)
-  pkg_names <- sapply(fls,parse_packages)
-  sapply(pkg_names,install_package,...)
+  pkg_names <- unlist(sapply(fls,parse_packages))
+  if (length(pkg_names)==0) {
+    message('no packages found')
+  } else {
+    sapply(pkg_names,install_package,...)
+  }
+  invisible(pkg_names)
 }
 
