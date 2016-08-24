@@ -17,8 +17,9 @@
 #'   \code{automagic::automagic()} to the top of the R file.
 #'
 #' @examples
-#' # not run
+#' \dontrun{
 #' automagic()
+#' }
 
 
 automagic <- function(directory=getwd(),...) {
