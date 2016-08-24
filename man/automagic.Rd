@@ -12,6 +12,9 @@ automagic(directory = getwd(), ...)
 \item{...}{other arguments to \code{\link[automagic]{install_package}},
 namely \code{force_install}}
 }
+\value{
+invisibly returns a list of packages that were found
+}
 \description{
 Searches a given directory for all R and R Markdown files, parses them for
 required packages and attempts to install them from CRAN or GitHub.

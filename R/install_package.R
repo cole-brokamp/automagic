@@ -30,6 +30,7 @@
 #' install_package('utils')
 #'
 install_package <- function(pkg,force_install=FALSE) {
+  automagic:::set_repo()
   if (!force_install & pkg %in% pacman::p_library()) {
     message(paste0(pkg,' already installed (version ',pacman::p_version(pkg),')'))
   } else if (pacman::p_iscran(pkg)) {
