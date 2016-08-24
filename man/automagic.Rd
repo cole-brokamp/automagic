@@ -26,8 +26,8 @@ Used for autosetup of an R programming environment. For example,
   \code{automagic::automagic()} to the top of the R file.
 }
 \examples{
-# not run
-automagic()
+# notrun
+# automagic()
 }
 \seealso{
 \code{\link{install_package}}, \code{\link{parse_packages}}
