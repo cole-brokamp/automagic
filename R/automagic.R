@@ -17,6 +17,7 @@
 #'   \code{automagic::automagic()} to the top of the R file.
 #'
 #' @examples
+#' # not run
 #' automagic()
 
 
