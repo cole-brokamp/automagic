@@ -24,4 +24,8 @@ at the top of the R script. By default it will search all `.R` and `.Rmd` files 
 ### Note
 This package was initially created to auto install dependent packages when Dockerizing R Shiny applications, but has also proved useful when running R code on remote computers or sharing R code with users that might not know how to install package dependencies.  Note that the package installs required R packages based on a best guess and does not prompt the user. It is experimental and meant for use in automatically setting up an R programming environment. Do not use for installing packages if you have the option to install with other tools like install.packages or one of the various GitHub installers.
 
+## TODO
+- parse the code ala http://adv-r.had.co.nz/Expressions.html#ast-funs
+- prompt user before installing the package (option that defaults to true)
+
 
