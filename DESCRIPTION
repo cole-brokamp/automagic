@@ -16,6 +16,9 @@ Imports:
     knitr,
     formatR,
     pacman,
-    githubinstall
+    githubinstall,
+    tidyverse,
+    devtools,
+    packrat
 URL: https://github.com/cole-brokamp/automagic
 BugReports: https://github.com/cole-brokamp/automagic/issues
