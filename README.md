@@ -7,7 +7,7 @@ automagic searches R code for necessary packages and installs them. In addition 
 ### Installation  
 You can install automagic from GitHub with:
 ```
-devtools::install_github('cole-brokamp/prepaRe')
+devtools::install_github('cole-brokamp/automagic')
 ```
 
 ### Use  
