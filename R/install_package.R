@@ -46,3 +46,8 @@ install_package <- function(pkg,force_install=FALSE) {
 
 
 
+set_repo <- function() {
+  r <- getOption("repos")
+  r["CRAN"] <- "https://cran.rstudio.com"
+  options(repos=r)
+}
