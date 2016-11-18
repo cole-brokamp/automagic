@@ -14,7 +14,8 @@
 #'   installers.
 #'
 #' @param pkg name of package to install
-#' @param force_install install even if package is in library
+#' @param force_install install even if package is in library (warning! this
+#'   could install a newer or older version of an already installed package)
 #'
 #' @export
 #' @importFrom pacman p_iscran
