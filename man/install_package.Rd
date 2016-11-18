@@ -9,7 +9,8 @@ install_package(pkg, force_install = FALSE)
 \arguments{
 \item{pkg}{name of package to install}
 
-\item{force_install}{install even if package is in library}
+\item{force_install}{install even if package is in library (warning! this
+could install a newer or older version of an already installed package)}
 }
 \description{
 Install package from CRAN or GitHub
