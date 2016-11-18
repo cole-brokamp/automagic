@@ -21,7 +21,7 @@ This usage scenario could be useful for sharing R code with users that might not
 
  ### Supplying A Dependencies File
  
- It is possible that `automagic` might mistakenly install the wrong package from GitHub or you might need a different version of an R package for the code to work as intended.  In this case, you can create a `.dependencies` file with `automagic::make_deps_file()`. This function parses R code and then queries the R package library to determine the exact source and version of each package to install.  Currently, only CRAN and GitHub packages are supported using a version number and Sha1 key, respectively. Although `automagic::automagic()` will first look for a `.dependencies` file, you can specify this step directly with `automagic::install_deps_file()`.
+ It is possible that `automagic` might mistakenly install the wrong package from GitHub or you might need a different version of an R package for the code to work as intended.  In this case, you can create a dependencies file with `automagic::make_deps_file()`. Based on `packrat`, it stores a snapshot (without tarball sources) of all required packages in a packrat lockfile. This function parses R code and then queries the R package library to determine the exact source and version of each package to install. Currently, only CRAN and GitHub packages are supported using a version number and Sha1 key, respectively. Although `automagic::automagic()` will first look for a packrat lockfile, you can specify this step directly with `automagic::install_deps_file()`.
  
  This usage scenario is useful when developing R code locally that needs to be deployed on another computer, like a collaborator's machine, a Shiny or RStudio server, a high performance cluster, or docker image.
 
