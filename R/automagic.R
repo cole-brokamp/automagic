@@ -24,14 +24,19 @@
 
 
 automagic <- function(directory=getwd(),...) {
-  fls <- list.files(path=directory,pattern='^.*\\.R$|^.*\\.Rmd$',
-                    full.names=TRUE,recursive=TRUE,...)
-  pkg_names <- unlist(sapply(fls,parse_packages))
-  if (length(pkg_names)==0) {
-    message('no packages found')
+  if (file.exists(file.path(directory,'.dependencies'))) {
+    automagic::install_deps_file(directory=directory)
   } else {
-    sapply(pkg_names,install_package,...)
+
+    fls <- list.files(path=directory,pattern='^.*\\.R$|^.*\\.Rmd$',
+                      full.names=TRUE,recursive=TRUE,...)
+    pkg_names <- unlist(sapply(fls,parse_packages))
+    if (length(pkg_names)==0) {
+      message('no packages found')
+    } else {
+      sapply(pkg_names,install_package,...)
+    }
+    invisible(pkg_names)
   }
-  invisible(pkg_names)
 }
 
