@@ -5,7 +5,10 @@ Version: 0.1.0
 Author: Cole Brokamp
 Maintainer: Cole Brokamp <cole.brokamp@gmail.com>
 Description: This package parses R code in a given directory for R
-    packages and attempts to install them from CRAN or GitHub.
+    packages and attempts to install them from CRAN or GitHub. 
+    Also allows for specifiying a dependencies file.
+    Contains helper tools for dockerizing an rshiny app and 
+    deploying it to an Amazon Web Services Docker Registry.
 License: GPL
 Encoding: UTF-8
 LazyData: true
