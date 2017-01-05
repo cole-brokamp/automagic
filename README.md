@@ -4,6 +4,10 @@
 
 > automagically install packages necessary to run R code
 
+### TL;DR
+
+This package parses R code in a given directory for R packages and attempts to install them from CRAN or GitHub. Optionally use a dependencies file for tighter control over which package versions to install. It also contains helper tools for dockerizing an rshiny app and deploying it to an Amazon Web Services Docker Registry.
+
 ### Installation  
 You can install automagic from GitHub with:
 ```
@@ -33,9 +37,11 @@ This package also contains some functions I created to dockerize a shiny applica
 automagic::shiny_dockerize()
 ```
 
-This is a wrapper that uses the following intermediate functions to build, test, and deploy the dockerized shiny application:
+This is a wrapper that uses the following intermediate functions to build, test, and view the dockerized shiny application:
 
 - `find_docker_cmd`: finds docker executable on system
 - `build_docker_app`: builds the application
 - `view_docker_app`: starts the app in a container and opens in RStudio Viewer or browser
-- `push_docker_app`: creates and pushes the image to [AWS ECS](https://aws.amazon.com/ecr/)
+
+
+Use `push_docker_app` to push the image to [AWS ECR](https://aws.amazon.com/ecr/).

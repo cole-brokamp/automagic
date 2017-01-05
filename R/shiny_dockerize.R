@@ -1,10 +1,17 @@
 #' dockerize a shiny application
 #'
-#' @param directory path to directory containing the shiny app (defaults to working directory)
+#' @param directory path to directory containing the shiny app (defaults to
+#'   working directory)
 #' @param re.automagic logical; force automagic to recreate dependencies file
 #' @param app.name defaults to the basename of \code{directory}
 #'
-#' @return
+#' @details This is a wrapper function that uses automagic package to build,
+#'   test, and view a dockerized shiny application. See
+#'   \code{\link{push_docker_app}} to push the image to an Amazon EC2 container
+#'   registry.
+#'
+#' @seealso \code{\link{find_docker_cmd}}, \code{\link{build_docker_app}}, \code{\link{view_docker_app}}
+#'
 #' @export
 #'
 shiny_dockerize <- function(directory=getwd(),re.automagic=FALSE,
