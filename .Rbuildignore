@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 .travis.yml
 .gitignore
+hello_shiny_tester/

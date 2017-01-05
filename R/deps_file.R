@@ -22,6 +22,11 @@ make_deps_file <- function(directory=getwd()) {
 #' @param directory directory containing .dependencies file
 #'
 #' @export
+#' @importFrom dplyr filter
+#' @importFrom dplyr select
+#' @importFrom dplyr contains
+#' @importFrom purrr pwalk
+#' @importFrom purrr walk2
 #' @details Installs packages from GitHub and CRAN based on Sha1 key and version number
 #' respectively, as defined in a .dependencies file created by
 #' \code{\link[automagic]{make_deps_file}}
