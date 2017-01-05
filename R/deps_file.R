@@ -14,7 +14,7 @@ make_deps_file <- function(directory=getwd()) {
   packrat::.snapshotImpl(project = directory,snapshot.sources=FALSE,verbose=FALSE,prompt=FALSE)
   file.rename(from=file.path(directory, 'packrat', 'packrat.lock'),
               to=file.path(directory,'.dependencies'))
-  unlink(file.path(directory,'packrat'),recursive=TRUE,force=TRUE)
+  on.exit(unlink(file.path(directory,'packrat'),recursive=TRUE,force=TRUE))
 }
 
 #' Install R packages from a .dependencies file
@@ -35,7 +35,9 @@ install_deps_file <- function(directory=getwd()) {
   deps <- as.data.frame(deps,stringsAsFactors = FALSE)
 
   gh_deps <-  dplyr::filter(deps,deps$Source == 'github')
-  gh_deps$install_call <- with(gh_deps,paste0(GithubUsername,'/',GithubRepo,'@',Hash))
+  if (!nrow(gh_deps) == 0) {
+    gh_deps$install_call <- with(gh_deps,paste0(GithubUsername,'/',GithubRepo,'@',Hash))
+  }
   cran_deps <- dplyr::filter(deps,deps$Source == 'CRAN')
   cran_deps <- dplyr::select(cran_deps,-dplyr::contains('Git'))
 
@@ -43,8 +45,10 @@ install_deps_file <- function(directory=getwd()) {
   purrr::walk2(cran_deps$Package,cran_deps$Version,devtools::install_version,type='source')
 
   # install GitHub given Sha1 ref
-  purrr::pwalk(list(repo=gh_deps$GithubRepo,
-                    username=gh_deps$GithubUsername,
-                    ref=gh_deps$GithubSha1),
-               devtools::install_github)
+  if (!nrow(gh_deps) == 0) {
+    purrr::pwalk(list(repo=gh_deps$GithubRepo,
+                      username=gh_deps$GithubUsername,
+                      ref=gh_deps$GithubSha1),
+                 devtools::install_github)
+  }
 }
