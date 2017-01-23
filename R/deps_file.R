@@ -6,20 +6,20 @@
 #' @details This function parses R code and then queries the R package library to
 #' determine the exact source and version of each package to install. Currently,
 #' only CRAN and GitHub packages are supported using a version number and Sha1
-#' key, respectively. Install packages from the .dependencies file using
+#' key, respectively. Install packages from the `automagic.dependencies` file using
 #' \code{\link[automagic]{install_deps_file}}
 #' @seealso \code{\link{automagic}}
 make_deps_file <- function(directory=getwd()) {
   packrat::opts$snapshot.recommended.packages(TRUE, persist = FALSE)
   packrat::.snapshotImpl(project = directory,snapshot.sources=FALSE,verbose=FALSE,prompt=FALSE)
   file.rename(from=file.path(directory, 'packrat', 'packrat.lock'),
-              to=file.path(directory,'.dependencies'))
+              to=file.path(directory,'automagic.dependencies'))
   on.exit(unlink(file.path(directory,'packrat'),recursive=TRUE,force=TRUE))
 }
 
-#' Install R packages from a .dependencies file
+#' Install R packages from a automagic.dependencies file
 #'
-#' @param directory directory containing .dependencies file
+#' @param directory directory containing automagic.dependencies file
 #'
 #' @export
 #' @importFrom dplyr filter
@@ -28,13 +28,13 @@ make_deps_file <- function(directory=getwd()) {
 #' @importFrom purrr pwalk
 #' @importFrom purrr walk2
 #' @details Installs packages from GitHub and CRAN based on Sha1 key and version number
-#' respectively, as defined in a .dependencies file created by
+#' respectively, as defined in a automagic.dependencies file created by
 #' \code{\link[automagic]{make_deps_file}}
 #' #' @seealso \code{\link{automagic}}
 install_deps_file <- function(directory=getwd()) {
   set_repo()
 
-  deps_file <- file.path(directory,'.dependencies')
+  deps_file <- file.path(directory,'automagic.dependencies')
   stopifnot(file.exists(deps_file))
   deps <- read.dcf(deps_file)
   deps <- as.data.frame(deps,stringsAsFactors = FALSE)

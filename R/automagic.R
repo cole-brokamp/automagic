@@ -2,7 +2,7 @@
 #'
 #' Searches a given directory for all R and R Markdown files, parses them for
 #' required packages and attempts to install them from CRAN or GitHub. If a
-#' `.dependencies` file was made using \code{\link[automagic]{make_deps_file}}, automagic
+#' `automagic.dependencies` file was made using \code{\link[automagic]{make_deps_file}}, automagic
 #' will use this rather than try to install based on a best guess.
 #'
 #' @param directory folder to search for R and Rmd files
@@ -24,7 +24,7 @@
 
 
 automagic <- function(directory=getwd(),...) {
-  if (file.exists(file.path(directory,'.dependencies'))) {
+  if (file.exists(file.path(directory,'automagic.dependencies'))) {
     automagic::install_deps_file(directory=directory)
   } else {
 

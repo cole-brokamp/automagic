@@ -16,7 +16,7 @@ Make a .dependencies file
 This function parses R code and then queries the R package library to
 determine the exact source and version of each package to install. Currently,
 only CRAN and GitHub packages are supported using a version number and Sha1
-key, respectively. Install packages from the .dependencies file using
+key, respectively. Install packages from the `automagic.dependencies` file using
 \code{\link[automagic]{install_deps_file}}
 }
 \seealso{
