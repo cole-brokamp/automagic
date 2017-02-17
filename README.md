@@ -1,3 +1,8 @@
+# TODO
+
+- make `get_package_details.R`
+- rewrite `deps_file.R` based on package details
+
 # automagic
 
 [![Build Status](https://travis-ci.org/cole-brokamp/automagic.svg?branch=master)](https://travis-ci.org/cole-brokamp/automagic)
