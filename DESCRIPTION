@@ -1,6 +1,6 @@
 Package: automagic
 Type: Package
-Title: Automagically document and install packages necessary to run R code
+Title: Automagically Document and Install Packages Necessary to Run R Code
 Version: 0.3
 Author: Cole Brokamp
 Maintainer: Cole Brokamp <cole.brokamp@gmail.com>

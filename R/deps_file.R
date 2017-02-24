@@ -47,7 +47,7 @@ install_deps_file <- function(directory=getwd()) {
   gh_deps <-  deps %>%dplyr::filter(!is.na(GithubRepo))
   if (!nrow(gh_deps) == 0) {
     gh_deps <- gh_deps %>%
-      mutate(install_calls = paste0(GithubUsername,'/',GithubRepo,'@',GithubSHA1))
+      dplyr::mutate(install_calls = paste0(GithubUsername,'/',GithubRepo,'@',GithubSHA1))
     remotes::install_github(gh_deps$install_calls)
   }
 
