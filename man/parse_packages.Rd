@@ -36,6 +36,6 @@ parse_packages('temp.R')
 unlink('temp.R')
 }
 \seealso{
-\code{\link{install_package}}, \code{\link{automagic}}
+\code{\link{install_package_guess}}, \code{\link{automagic}}
 }
 

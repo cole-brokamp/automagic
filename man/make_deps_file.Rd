@@ -2,7 +2,7 @@
 % Please edit documentation in R/deps_file.R
 \name{make_deps_file}
 \alias{make_deps_file}
-\title{Make a .dependencies file}
+\title{Make a package dependencies (\code{deps.yaml}) file}
 \usage{
 make_deps_file(directory = getwd())
 }
@@ -10,14 +10,12 @@ make_deps_file(directory = getwd())
 \item{directory}{directory containing R code to parse}
 }
 \description{
-Make a .dependencies file
-}
-\details{
-This function parses R code and then queries the R package library to
-determine the exact source and version of each package to install. Currently,
-only CRAN and GitHub packages are supported using a version number and Sha1
-key, respectively. Install packages from the `automagic.dependencies` file using
-\code{\link[automagic]{install_deps_file}}
+This function parses R code for required packages using
+ \code{\link{parse_packages}} and then queries the R package library to
+ determine the exact source and version of each package to install.
+ Currently, only CRAN and GitHub packages are supported.
+ Install packages from the `deps.yaml` file using
+ \code{\link{automagic}{install_deps_file}}
 }
 \seealso{
 \code{\link{automagic}}

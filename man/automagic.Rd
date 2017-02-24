@@ -4,34 +4,18 @@
 \alias{automagic}
 \title{Automagically install all required R packages}
 \usage{
-automagic(directory = getwd(), ...)
+automagic(directory = getwd())
 }
 \arguments{
 \item{directory}{folder to search for R and Rmd files}
-
-\item{...}{other arguments to \code{\link[automagic]{install_package}},
-namely \code{force_install}}
-}
-\value{
-invisibly returns a list of packages that were found
 }
 \description{
 Searches a given directory for all R and R Markdown files, parses them for
-required packages and attempts to install them from CRAN or GitHub. If a
-`automagic.dependencies` file was made using \code{\link[automagic]{make_deps_file}}, automagic
+required packages and attempts to install them from CRAN or GitHub. More importantly,
+if a `deps.yaml` file was made using \code{\link{make_deps_file}}, automagic
 will use this rather than try to install based on a best guess.
 }
-\details{
-Used for autosetup of an R programming environment. For example,
-  when running an R script on a remote server, or distributing an R Shiny app
-  to another user, or creating a Docker container to run R code.  Just add
-  \code{automagic::automagic()} to the top of the R file.
-}
-\examples{
-# notrun
-# automagic()
-}
 \seealso{
-\code{\link{install_package}}, \code{\link{parse_packages}}
+\code{\link{install_package_guess}}, \code{\link{parse_packages}}
 }
 

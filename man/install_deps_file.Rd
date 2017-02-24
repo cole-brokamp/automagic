@@ -2,20 +2,19 @@
 % Please edit documentation in R/deps_file.R
 \name{install_deps_file}
 \alias{install_deps_file}
-\title{Install R packages from a automagic.dependencies file}
+\title{Install R packages from a package dependencies (\code{deps.yaml}) file}
 \usage{
 install_deps_file(directory = getwd())
 }
 \arguments{
-\item{directory}{directory containing automagic.dependencies file}
+\item{directory}{directory containing \code{deps.yaml} file}
 }
 \description{
-Install R packages from a automagic.dependencies file
-}
-\details{
 Installs packages from GitHub and CRAN based on Sha1 key and version number
-respectively, as defined in a automagic.dependencies file created by
-\code{\link[automagic]{make_deps_file}}
-#' @seealso \code{\link{automagic}}
+respectively, as defined in a \code{deps.yaml} file created by
+\code{\link{make_deps_file}}
+}
+\seealso{
+\code{\link{make_deps_file}}, \code{\link{automagic}}
 }
 

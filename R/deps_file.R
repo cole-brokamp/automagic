@@ -1,59 +1,59 @@
-#' Make a .dependencies file
+#' Make a package dependencies (\code{deps.yaml}) file
+#'
+#' This function parses R code for required packages using
+#'  \code{\link{parse_packages}} and then queries the R package library to
+#'  determine the exact source and version of each package to install.
+#'  Currently, only CRAN and GitHub packages are supported.
+#'  Install packages from the `deps.yaml` file using
+#'  \code{\link{automagic}{install_deps_file}}
 #'
 #' @param directory directory containing R code to parse
 #'
 #' @export
-#' @details This function parses R code and then queries the R package library to
-#' determine the exact source and version of each package to install. Currently,
-#' only CRAN and GitHub packages are supported using a version number and Sha1
-#' key, respectively. Install packages from the `automagic.dependencies` file using
-#' \code{\link[automagic]{install_deps_file}}
+#' @import magrittr
 #' @seealso \code{\link{automagic}}
 make_deps_file <- function(directory=getwd()) {
-  packrat::opts$snapshot.recommended.packages(TRUE, persist = FALSE)
-  packrat::.snapshotImpl(project = directory,snapshot.sources=FALSE,verbose=FALSE,prompt=FALSE)
-  file.rename(from=file.path(directory, 'packrat', 'packrat.lock'),
-              to=file.path(directory,'automagic.dependencies'))
-  on.exit(unlink(file.path(directory,'packrat'),recursive=TRUE,force=TRUE))
+  pkg_names <- get_dependent_packages(directory)
+  lapply(pkg_names,get_package_details) %>%
+    yaml::as.yaml() %>%
+    cat(file=file.path(directory,'deps.yaml'))
 }
 
-#' Install R packages from a automagic.dependencies file
+
+#' Install R packages from a package dependencies (\code{deps.yaml}) file
 #'
-#' @param directory directory containing automagic.dependencies file
+#' Installs packages from GitHub and CRAN based on Sha1 key and version number
+#' respectively, as defined in a \code{deps.yaml} file created by
+#' \code{\link{make_deps_file}}
+#'
+#' @param directory directory containing \code{deps.yaml} file
 #'
 #' @export
+#' @importFrom magrittr %>%
 #' @importFrom dplyr filter
 #' @importFrom dplyr select
 #' @importFrom dplyr contains
 #' @importFrom purrr pwalk
 #' @importFrom purrr walk2
-#' @details Installs packages from GitHub and CRAN based on Sha1 key and version number
-#' respectively, as defined in a automagic.dependencies file created by
-#' \code{\link[automagic]{make_deps_file}}
-#' #' @seealso \code{\link{automagic}}
+#' @seealso \code{\link{make_deps_file}}, \code{\link{automagic}}
 install_deps_file <- function(directory=getwd()) {
-  set_repo()
 
-  deps_file <- file.path(directory,'automagic.dependencies')
-  stopifnot(file.exists(deps_file))
-  deps <- read.dcf(deps_file)
-  deps <- as.data.frame(deps,stringsAsFactors = FALSE)
+  deps_file <- file.path(directory,'deps.yaml')
+  if (! file.exists(deps_file)) stop('deps.yaml not found',call.=FALSE)
 
-  gh_deps <-  dplyr::filter(deps,deps$Source == 'github')
+  deps <- yaml::yaml.load_file(deps_file) %>%
+    dplyr::bind_rows()
+
+  gh_deps <-  deps %>%dplyr::filter(!is.na(GithubRepo))
   if (!nrow(gh_deps) == 0) {
-    gh_deps$install_call <- with(gh_deps,paste0(GithubUsername,'/',GithubRepo,'@',Hash))
+    gh_deps <- gh_deps %>%
+      mutate(install_calls = paste0(GithubUsername,'/',GithubRepo,'@',GithubSHA1))
+    remotes::install_github(gh_deps$install_calls)
   }
-  cran_deps <- dplyr::filter(deps,deps$Source == 'CRAN')
-  cran_deps <- dplyr::select(cran_deps,-dplyr::contains('Git'))
 
+  cran_deps <-  deps %>%dplyr::filter(Repository == 'CRAN')
   # install CRAN package given version number
-  purrr::walk2(cran_deps$Package,cran_deps$Version,devtools::install_version,type='source')
-
-  # install GitHub given Sha1 ref
-  if (!nrow(gh_deps) == 0) {
-    purrr::pwalk(list(repo=gh_deps$GithubRepo,
-                      username=gh_deps$GithubUsername,
-                      ref=gh_deps$GithubSha1),
-                 devtools::install_github)
+  if (!nrow(cran_deps) == 0) {
+    purrr::walk2(cran_deps$Package,cran_deps$Version,devtools::install_version,type='source')
   }
 }

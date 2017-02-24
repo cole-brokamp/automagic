@@ -1,42 +1,26 @@
 #' Automagically install all required R packages
 #'
 #' Searches a given directory for all R and R Markdown files, parses them for
-#' required packages and attempts to install them from CRAN or GitHub. If a
-#' `automagic.dependencies` file was made using \code{\link[automagic]{make_deps_file}}, automagic
+#' required packages and attempts to install them from CRAN or GitHub. More importantly,
+#' if a `deps.yaml` file was made using \code{\link{make_deps_file}}, automagic
 #' will use this rather than try to install based on a best guess.
 #'
 #' @param directory folder to search for R and Rmd files
-#' @param ... other arguments to \code{\link[automagic]{install_package}},
-#'   namely \code{force_install}
-#' @return invisibly returns a list of packages that were found
 #'
 #' @export
-#' @seealso \code{\link{install_package}}, \code{\link{parse_packages}}
-#'
-#' @details Used for autosetup of an R programming environment. For example,
-#'   when running an R script on a remote server, or distributing an R Shiny app
-#'   to another user, or creating a Docker container to run R code.  Just add
-#'   \code{automagic::automagic()} to the top of the R file.
-#'
-#' @examples
-#' # notrun
-#' # automagic()
+#' @seealso \code{\link{install_package_guess}}, \code{\link{parse_packages}}
 
 
-automagic <- function(directory=getwd(),...) {
-  if (file.exists(file.path(directory,'automagic.dependencies'))) {
+
+automagic <- function(directory=getwd()) {
+  if (file.exists(file.path(directory,'deps.yaml'))) {
+    message('\n\ninstalling from deps.yaml file at\n',
+            paste0(file.path(directory,'deps.yaml')),'\n\n')
     automagic::install_deps_file(directory=directory)
   } else {
-
-    fls <- list.files(path=directory,pattern='^.*\\.R$|^.*\\.Rmd$',
-                      full.names=TRUE,recursive=TRUE,...)
-    pkg_names <- unlist(sapply(fls,parse_packages))
-    if (length(pkg_names)==0) {
-      message('no packages found')
-    } else {
-      sapply(pkg_names,install_package,...)
-    }
-    invisible(pkg_names)
+    message('no deps.yaml file found in specified directory')
+    message('parsing code and installing packages based on best guess')
+    pkgs <- get_dependent_packages(directory)
+    sapply(pkgs,install_package_guess)
   }
 }
-

@@ -6,7 +6,7 @@
 #'
 #' @return a vector of package names as character strings
 #' @export
-#' @seealso \code{\link{install_package}}, \code{\link{automagic}}
+#' @seealso \code{\link{install_package_guess}}, \code{\link{automagic}}
 #'
 #' @details This function uses regular expressions to search through a file
 #'   containing R code to find required package names.  It extracts not only
