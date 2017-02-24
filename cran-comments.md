@@ -1,3 +1,8 @@
+## Resubmission notes
+
+- `cran-comments.md` no longer included in package
+- used `utils::globalVariables` to avoid CRAN note about undefined global variables
+
 ## Test environments
 
 * local macOS install, R 3.3.2
@@ -7,7 +12,7 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 notes
+0 errors | 0 warnings | 0 notes
 
 * This is a new release and the first submission.
 * The note is erroneously generated as the variables are not global, but are instead evaluated using the dplyr package.
