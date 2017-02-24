@@ -4,7 +4,7 @@ Title: Automagically Document and Install Packages Necessary to Run R Code
 Version: 0.3
 Author: Cole Brokamp
 Maintainer: Cole Brokamp <cole.brokamp@gmail.com>
-Description: This package parses R code in a given directory for R packages and attempts to install them from CRAN or GitHub. Optionally use a dependencies file for tighter control over which package versions to install.
+Description: Parse R code in a given directory for R packages and attempt to install them from CRAN or GitHub. Optionally use a dependencies file for tighter control over which package versions to install.
 License: GPL
 Encoding: UTF-8
 LazyData: true
