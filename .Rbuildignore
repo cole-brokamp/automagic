@@ -2,4 +2,4 @@
 ^\.Rproj\.user$
 .travis.yml
 .gitignore
-hello_shiny_tester/
+cran_comments.md
