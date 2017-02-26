@@ -1,14 +1,15 @@
 # automagic
 
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/automagic)](https://cran.r-project.org/package=automagic)
 [![Build Status](https://travis-ci.org/cole-brokamp/automagic.svg?branch=master)](https://travis-ci.org/cole-brokamp/automagic)
 
 
-An R package that parses R code in a given directory for packages and attempts to install them from CRAN or GitHub. 
-
-Optionally use a dependencies YAML file (`deps.yaml`) for tighter control over which package versions to install. The dependencies file can be automatically created based from a given directory of code and the versions and sources of packages found in the local R library.
+Parse R code in a given directory for packages and attempt to install them from CRAN or GitHub. Optionally use a dependencies YAML file (`deps.yaml`) for tighter control over which package versions to install. The dependencies file can be automatically created based from a given directory of code and the versions and sources of packages found in the local R library.
 
 ## Installation  
-Install automagic from GitHub with `remotes::install_github('cole-brokamp/automagic')`
+
+Install the latest stable version (0.3) from CRAN with `install.packages('automagic')`.
+Install the latest development version from GitHub with `remotes::install_github('cole-brokamp/automagic')`.
 
 ## Using
 
