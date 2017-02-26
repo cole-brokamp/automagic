@@ -1,7 +1,9 @@
 # automagic
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/automagic)](https://cran.r-project.org/package=automagic)
+[![DOI](https://zenodo.org/badge/65520853.svg)](https://zenodo.org/badge/latestdoi/65520853)
 [![Build Status](https://travis-ci.org/cole-brokamp/automagic.svg?branch=master)](https://travis-ci.org/cole-brokamp/automagic)
+![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/automagic?color=orange)
 
 
 Parse R code in a given directory for packages and attempt to install them from CRAN or GitHub. Optionally use a dependencies YAML file (`deps.yaml`) for tighter control over which package versions to install. The dependencies file can be automatically created based from a given directory of code and the versions and sources of packages found in the local R library.
