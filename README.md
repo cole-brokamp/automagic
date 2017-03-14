@@ -1,17 +1,17 @@
 # automagic
 
-![](automagic.png)
-
-Parse R code in a given directory for packages and attempt to install them from CRAN or GitHub. Optionally use a dependencies YAML file (`deps.yaml`) for tighter control over which package versions to install. The dependencies file can be automatically created based from a given directory of code and the versions and sources of packages found in the local R library.
-
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/automagic)](https://cran.r-project.org/package=automagic)
 [![DOI](https://zenodo.org/badge/65520853.svg)](https://zenodo.org/badge/latestdoi/65520853)
 [![Build Status](https://travis-ci.org/cole-brokamp/automagic.svg?branch=master)](https://travis-ci.org/cole-brokamp/automagic)
 ![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/automagic?color=orange)
 
+![](automagic.png)
+
+Parse R code for required packages and install them. Optionally control which package versions to install using a `deps.yaml` file that can be created manually or automatically created based on a directory of R source files and the versions and sources of packages found in the local R library.
+
 ## Installation  
 
-Install the latest stable version (0.3) from CRAN with `install.packages('automagic')`.
+Install the latest stable version (0.3) from CRAN with `install.packages('automagic')`.  
 Install the latest development version from GitHub with `remotes::install_github('cole-brokamp/automagic')`.
 
 ## Using
@@ -43,7 +43,7 @@ The dependencies file could also be created or changed manually if necessary. Fo
 
 ### GitHub Installation
 
-GitHub packages are installed using the `remotes` package. Set the environment variable `GITHUB_PAT` to supply a personal access token (PAT) to install a package from a private repository or to increase the limit of calls to the GitHub API during installations of a large number of packages.
+GitHub packages are installed using the `remotes` package. Set the environment variable `GITHUB_PAT` to supply a personal access token (PAT) to install a package from a private repository or to increase the limit of calls to the GitHub API during installation of a large number of packages.
 
 ### Shiny Applications
 
