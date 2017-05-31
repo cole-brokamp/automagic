@@ -44,11 +44,13 @@ install_deps_file <- function(directory=getwd()) {
   deps <- yaml::yaml.load_file(deps_file) %>%
     dplyr::bind_rows()
 
-  gh_deps <-  deps %>%dplyr::filter(!is.na(GithubRepo))
-  if (!nrow(gh_deps) == 0) {
-    gh_deps <- gh_deps %>%
-      dplyr::mutate(install_calls = paste0(GithubUsername,'/',GithubRepo,'@',GithubSHA1))
-    remotes::install_github(gh_deps$install_calls)
+  if ('GithubRepo' %in% names(deps)) {
+    gh_deps <- deps %>% dplyr::filter(!is.na(GithubRepo))
+    if (!nrow(gh_deps) == 0) {
+      gh_deps <- gh_deps %>%
+        dplyr::mutate(install_calls = paste0(GithubUsername,'/',GithubRepo,'@',GithubSHA1))
+      remotes::install_github(gh_deps$install_calls)
+    }
   }
 
   cran_deps <-  deps %>%dplyr::filter(Repository == 'CRAN')
