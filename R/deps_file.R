@@ -13,7 +13,7 @@
 #' @import magrittr
 #' @seealso \code{\link{automagic}}
 make_deps_file <- function(directory=getwd()) {
-  pkg_names <- get_dependent_packages(directory)
+  pkg_names <- get_dependent_packages(directory) %>% unique()
   lapply(pkg_names,get_package_details) %>%
     yaml::as.yaml() %>%
     cat(file=file.path(directory,'deps.yaml'))
