@@ -30,4 +30,3 @@ If a package is not availble in the R library, attempt to install it
     See \code{\link{make_deps_file}} and \code{\link{install_deps_file}} for
     installing version specific packages based on a local R library.
 }
-

@@ -18,4 +18,3 @@ A list of package characteristics.
 Uses \code{packageDescription} to get details about given package from R library on local machine.
 Currently only supports CRAN and GitHub packages
 }
-

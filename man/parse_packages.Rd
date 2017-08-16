@@ -38,4 +38,3 @@ unlink('temp.R')
 \seealso{
 \code{\link{install_package_guess}}, \code{\link{automagic}}
 }
-

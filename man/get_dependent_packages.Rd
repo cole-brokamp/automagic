@@ -19,4 +19,3 @@ get packages required to run R code
 parses all R and Rmd files in a directory and uses \code{\link{parse_packages}}
     to find all R packages required for the code to run
 }
-

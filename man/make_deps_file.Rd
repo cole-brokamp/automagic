@@ -20,4 +20,3 @@ This function parses R code for required packages using
 \seealso{
 \code{\link{automagic}}
 }
-

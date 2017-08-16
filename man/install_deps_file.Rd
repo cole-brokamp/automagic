@@ -17,4 +17,3 @@ respectively, as defined in a \code{deps.yaml} file created by
 \seealso{
 \code{\link{make_deps_file}}, \code{\link{automagic}}
 }
-

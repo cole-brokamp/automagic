@@ -18,4 +18,3 @@ will use this rather than try to install based on a best guess.
 \seealso{
 \code{\link{install_package_guess}}, \code{\link{parse_packages}}
 }
-
