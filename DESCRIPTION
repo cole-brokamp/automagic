@@ -24,3 +24,5 @@ Imports:
     yaml
 URL: https://github.com/cole-brokamp/automagic
 BugReports: https://github.com/cole-brokamp/automagic/issues
+Suggests: 
+    testthat
