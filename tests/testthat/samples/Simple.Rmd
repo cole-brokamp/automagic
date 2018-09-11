@@ -1,0 +1,6 @@
+```{r}
+library(splines)
+library("lattice")
+require(survival)
+utils::adist("kitten", "sitting")
+```

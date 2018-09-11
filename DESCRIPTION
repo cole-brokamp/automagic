@@ -1,9 +1,11 @@
 Package: automagic
 Type: Package
 Title: Automagically Document and Install Packages Necessary to Run R Code
-Version: 0.3
-Author: Cole Brokamp
-Maintainer: Cole Brokamp <cole.brokamp@gmail.com>
+Version: 0.3.9000
+Authors@R: c(
+    person("Cole", "Brokamp",
+    email = "cole.brokamp@gmail.com", role = c("aut", "cre")),
+    person("Steph", "Locke", role = "ctb"))
 Description: Parse R code in a given directory for R packages and attempt to install them from CRAN or GitHub. Optionally use a dependencies file for tighter control over which package versions to install.
 License: GPL
 Encoding: UTF-8
@@ -24,3 +26,5 @@ Imports:
     yaml
 URL: https://github.com/cole-brokamp/automagic
 BugReports: https://github.com/cole-brokamp/automagic/issues
+Suggests: 
+    testthat

@@ -49,13 +49,19 @@ parse_packages <- function(fl){
 
   if (is.null(lns)) stop('No parsed text available',call.=FALSE)
 
-  lib.pkgs <- sapply(lns,function(x) regmatches(x,gregexpr('(?<=library\\().*?(?=\\))',x,perl=TRUE)))
+  lib.pkgs <- sapply(lns,function(x) regmatches(x,
+                                     gregexpr('(?<=(library\\()|(library\\(["\']{1}))[[:alnum:]|.]+',
+                                              x,
+                                              perl=TRUE)))
   lib.pkgs <- unique(unlist(lib.pkgs))
 
-  req.pkgs <- sapply(lns,function(x) regmatches(x,gregexpr('(?<=require\\().*?(?=\\))',x,perl=TRUE)))
+  req.pkgs <- sapply(lns,function(x) regmatches(x,
+                                                gregexpr('(?<=(require\\()|(require\\(["\']{1}))[[:alnum:]|.]+',
+                                                x,
+                                                perl=TRUE)))
   req.pkgs <- unique(unlist(req.pkgs))
 
-  colon.pkgs <- sapply(lns,function(x) regmatches(x,gregexpr("[A-Za-z0-9\\.]*(?=:{2,3})",x,perl=TRUE)))
+  colon.pkgs <- sapply(lns,function(x) regmatches(x,gregexpr("[[:alnum:]|.]*(?=:{2,3})",x,perl=TRUE)))
   colon.pkgs <- unique(unlist(colon.pkgs))
 
   # return character vector of unique package names (remove empty string)
