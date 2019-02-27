@@ -4,7 +4,8 @@
 \alias{install_package_guess}
 \title{Install package from CRAN or GitHub based on best guess}
 \usage{
-install_package_guess(pkg, force_install = FALSE, prompt = interactive())
+install_package_guess(pkg, force_install = FALSE,
+  prompt = interactive())
 }
 \arguments{
 \item{pkg}{name of package to install}

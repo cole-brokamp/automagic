@@ -20,12 +20,6 @@
 #' @param prompt prompt the user to install a GitHub package (defaults to yes if the R session is interactive)
 #'
 #' @export
-#' @importFrom pacman p_iscran
-#' @importFrom pacman p_library
-#' @importFrom pacman p_version
-#' @importFrom utils install.packages
-#' @importFrom githubinstall gh_suggest
-#' @importFrom githubinstall gh_install_packages
 #'
 install_package_guess <- function(pkg,force_install=FALSE,prompt=interactive()) {
     .Deprecated("the current version of automagic no longer supports installing 'best guess' packages")
