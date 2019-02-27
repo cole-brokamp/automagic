@@ -16,8 +16,6 @@ Depends:
 Imports:
     knitr,
     formatR,
-    pacman,
-    githubinstall,
     magrittr,
     dplyr,
     purrr,

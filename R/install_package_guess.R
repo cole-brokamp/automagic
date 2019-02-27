@@ -28,16 +28,7 @@
 #' @importFrom githubinstall gh_install_packages
 #'
 install_package_guess <- function(pkg,force_install=FALSE,prompt=interactive()) {
-  set_repo()
-  if (!force_install & pkg %in% pacman::p_library()) {
-    message(paste0(pkg,' already installed (version ',pacman::p_version(pkg),')'))
-  } else if (pacman::p_iscran(pkg)) {
-    message('installing ',pkg,' from CRAN...')
-    utils::install.packages(pkg)
-  } else {
-    message(pkg,' not found on CRAN. Searching on GitHub')
-    githubinstall::gh_install_packages(pkg,ask=prompt,verbose=FALSE)
-  }
+    .Deprecated("the current version of automagic no longer supports installing 'best guess' packages")
 }
 
 
