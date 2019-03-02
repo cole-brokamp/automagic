@@ -31,9 +31,11 @@ This function uses regular expressions to search through a file
   \code{\link[knitr]{purl}}.
 }
 \examples{
+\dontrun{
 cat('library(ggplot2)\\n # library(curl)\\n require(leaflet)\\n CB::date_print()\\n',file='temp.R')
 parse_packages('temp.R')
 unlink('temp.R')
+}
 }
 \seealso{
 \code{\link{install_package_guess}}, \code{\link{automagic}}

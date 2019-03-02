@@ -7,7 +7,7 @@
 #'
 #' @return a vector of package names
 #' @export
-get_dependent_packages <- function(directory=getwd()) {
+get_dependent_packages <- function(directory = getwd()) {
   fls <- list.files(path=directory,pattern='^.*\\.R$|^.*\\.Rmd$',
                     full.names=TRUE,recursive=TRUE)
   pkg_names <- unlist(sapply(fls,parse_packages))

@@ -25,46 +25,39 @@
 #' @importFrom knitr purl
 #' @importFrom formatR tidy_source
 #'
-#' @examples
+#' @examples \dontrun{
 #' cat('library(ggplot2)\n # library(curl)\n require(leaflet)\n CB::date_print()\n',file='temp.R')
 #' parse_packages('temp.R')
 #' unlink('temp.R')
+#' }
 
 parse_packages <- function(fl){
+    lns <- get_lines(fl)
+    rgxs <- list(library = '(?<=(library\\()|(library\\(["\']{1}))[[:alnum:]|.]+',
+                 require = '(?<=(require\\()|(require\\(["\']{1}))[[:alnum:]|.]+',
+                 colon = "[[:alnum:]|.]*(?=:{2,3})")
 
-  if (grepl('.Rmd',fl,fixed=TRUE)) {
-    tmp.file <- tempfile()
-    knitr::purl(input=fl,output=tmp.file,quiet=TRUE)
-    fl <- tmp.file
-  }
+    found_pkgs <- purrr::map(rgxs, finder, lns = lns) %>% unlist() %>% unique()
+    found_pkgs <- found_pkgs[! found_pkgs %in% c('', ' ')]
+    return(found_pkgs)
+}
 
-  lns <- tryCatch(formatR::tidy_source(fl,comment=FALSE,blank=FALSE,arrow=TRUE,
-                                brace.newline=TRUE,output=FALSE)$text.mask,
-                  error=function(e) {
-                    message(paste('Could not parse R code in:',fl))
-                    message('Make sure you are specifying the right file name')
-                    message('   and check for syntax errors')
-                    message(paste0('-----\n',e,'\n-----'))
-                  })
+finder <- function(rgx, lns) regmatches(lns, gregexpr(rgx, lns, perl = TRUE)) %>% unlist()
 
-  if (is.null(lns)) stop('No parsed text available',call.=FALSE)
-
-  lib.pkgs <- sapply(lns,function(x) regmatches(x,
-                                     gregexpr('(?<=(library\\()|(library\\(["\']{1}))[[:alnum:]|.]+',
-                                              x,
-                                              perl=TRUE)))
-  lib.pkgs <- unique(unlist(lib.pkgs))
-
-  req.pkgs <- sapply(lns,function(x) regmatches(x,
-                                                gregexpr('(?<=(require\\()|(require\\(["\']{1}))[[:alnum:]|.]+',
-                                                x,
-                                                perl=TRUE)))
-  req.pkgs <- unique(unlist(req.pkgs))
-
-  colon.pkgs <- sapply(lns,function(x) regmatches(x,gregexpr("[[:alnum:]|.]*(?=:{2,3})",x,perl=TRUE)))
-  colon.pkgs <- unique(unlist(colon.pkgs))
-
-  # return character vector of unique package names (remove empty string)
-  out <- c(lib.pkgs,req.pkgs,colon.pkgs)
-  return(out[!out==''])
+get_lines <- function(file_name) {
+    if (grepl('.Rmd', file_name, fixed=TRUE)) {
+        tmp.file <- tempfile()
+        knitr::purl(input=file_name, output=tmp.file, quiet=TRUE)
+        file_name <- tmp.file
+    }
+    lns <- tryCatch(formatR::tidy_source(file_name, comment = FALSE, blank = FALSE, arrow = TRUE,
+                                         brace.newline = TRUE, output = FALSE)$text.mask,
+                    error = function(e) {
+                        message(paste('Could not parse R code in:', file_name))
+                        message('   Make sure you are specifying the right file name')
+                        message('   and check for syntax errors')
+                        stop("", call. = FALSE)
+                    })
+    if (is.null(lns)) stop('No parsed text available', call. = FALSE)
+    return(lns)
 }
