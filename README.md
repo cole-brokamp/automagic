@@ -9,7 +9,7 @@ Parse R code for required packages and install them. Optionally control which pa
 
 ## Installation
 
-Install the latest stable version (0.3) from CRAN with `install.packages('automagic')`.  
+Install the latest stable version (0.5) from CRAN with `install.packages('automagic')`.
 Install the latest development version from GitHub with `remotes::install_github('cole-brokamp/automagic')`.
 
 ## Using
@@ -35,7 +35,7 @@ The dependencies file could also be created or changed manually if necessary. Fo
 
 ### Without A Dependencies File
 
-To make sure R has all the required packages before running any R code, run `automagic::automagic()`. If there is no `deps.yaml` file present, `automagic` searches all `.R` and `.Rmd` files in the current working directory for necessary packages and creates a `deps.yaml` file. Review this file to see what packages will be installed and rerun `automagic::automagic()` to install all packages in the file.
+To make sure R has all the required packages before running any R code, run `automagic::automagic()`. If there is no `deps.yaml` file present, `automagic` searches all `.R` and `.Rmd` files in the current working directory for necessary packages and attempts to install them from CRAN.  Unlike previous versions of the `automagic` package, if a package is not available on CRAN, it will *not* attempt to install it from GitHub based on a best guess. 
 
 ## Details
 

@@ -1,7 +1,7 @@
 #' Automagically install all required R packages
 #'
 #' Searches a given directory for all R and R Markdown files, parses them for
-#' required packages and attempts to install them from CRAN or GitHub. More importantly,
+#' required packages and attempts to install them from CRAN. More importantly,
 #' if a `deps.yaml` file was made using \code{\link{make_deps_file}}, automagic
 #' will use this rather than try to install based on a best guess.
 #'
@@ -12,15 +12,14 @@
 
 
 
-automagic <- function(directory=getwd()) {
+automagic <- function(directory = getwd()) {
   if (file.exists(file.path(directory,'deps.yaml'))) {
     message('\n\ninstalling from deps.yaml file at\n',
             paste0(file.path(directory,'deps.yaml')),'\n\n')
     automagic::install_deps_file(directory=directory)
   } else {
     message('no deps.yaml file found in specified directory')
-    message('parsing code and creating a deps.yaml file now')
-    make_deps_file(directory)
-    message('please review deps.yaml and rerun automagic() to install packages specified from this file')
+    message('parsing code and attempting to install packages from CRAN')
+    get_dependent_packages(directory) %>% install_package_guess()
   }
 }

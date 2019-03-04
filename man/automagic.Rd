@@ -11,7 +11,7 @@ automagic(directory = getwd())
 }
 \description{
 Searches a given directory for all R and R Markdown files, parses them for
-required packages and attempts to install them from CRAN or GitHub. More importantly,
+required packages and attempts to install them from CRAN. More importantly,
 if a `deps.yaml` file was made using \code{\link{make_deps_file}}, automagic
 will use this rather than try to install based on a best guess.
 }
