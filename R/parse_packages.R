@@ -22,9 +22,6 @@
 #'   R Markdown files are also supported by extracting only R code using
 #'   \code{\link[knitr]{purl}}.
 #'
-#' @importFrom knitr purl
-#' @importFrom formatR tidy_source
-#'
 #' @examples \dontrun{
 #' cat('library(ggplot2)\n # library(curl)\n require(leaflet)\n CB::date_print()\n',file='temp.R')
 #' parse_packages('temp.R')

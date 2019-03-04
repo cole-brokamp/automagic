@@ -1,7 +1,7 @@
 Package: automagic
 Type: Package
 Title: Automagically Document and Install Packages Necessary to Run R Code
-Version: 0.3.9000
+Version: 0.4.1
 Authors@R: c(
     person("Cole", "Brokamp",
     email = "cole.brokamp@gmail.com", role = c("aut", "cre")),

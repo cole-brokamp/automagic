@@ -53,9 +53,9 @@ install_deps_file <- function(directory=getwd()) {
     }
   }
 
-  cran_deps <-  deps %>%dplyr::filter(Repository == 'CRAN')
+  cran_deps <- deps %>% dplyr::filter(Repository == 'CRAN')
   # install CRAN package given version number
   if (!nrow(cran_deps) == 0) {
-    purrr::walk2(cran_deps$Package,cran_deps$Version,devtools::install_version,type='source')
+    purrr::walk2(cran_deps$Package,cran_deps$Version, remotes::install_version,type='source')
   }
 }

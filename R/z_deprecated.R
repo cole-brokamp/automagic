@@ -24,11 +24,3 @@
 install_package_guess <- function(pkg,force_install=FALSE,prompt=interactive()) {
     .Deprecated("the current version of automagic no longer supports installing 'best guess' packages")
 }
-
-
-
-set_repo <- function() {
-  r <- getOption("repos")
-  r["CRAN"] <- "https://cran.rstudio.com"
-  options(repos=r)
-}
