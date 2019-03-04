@@ -1,3 +1,7 @@
+## automagic v0.5.1
+
+- added back `install_package_guess`, but removed ability to installed packages from GitHub based on a guess
+
 
 ## automagic v0.5
 

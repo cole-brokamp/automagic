@@ -9,7 +9,7 @@ Parse R code for required packages and install them. Optionally control which pa
 
 ## Installation
 
-Install the latest stable version (0.5) from CRAN with `install.packages('automagic')`.
+Install the latest stable version from CRAN with `install.packages('automagic')`.
 Install the latest development version from GitHub with `remotes::install_github('cole-brokamp/automagic')`.
 
 ## Using
