@@ -10,7 +10,6 @@
 #' @param directory directory containing R code to parse
 #'
 #' @export
-#' @import magrittr
 #' @seealso \code{\link{automagic}}
 make_deps_file <- function(directory=getwd()) {
   pkg_names <- get_dependent_packages(directory) %>% unique()
@@ -29,12 +28,6 @@ make_deps_file <- function(directory=getwd()) {
 #' @param directory directory containing \code{deps.yaml} file
 #'
 #' @export
-#' @importFrom magrittr %>%
-#' @importFrom dplyr filter
-#' @importFrom dplyr select
-#' @importFrom dplyr contains
-#' @importFrom purrr pwalk
-#' @importFrom purrr walk2
 #' @seealso \code{\link{make_deps_file}}, \code{\link{automagic}}
 install_deps_file <- function(directory=getwd()) {
 

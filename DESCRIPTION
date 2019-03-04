@@ -14,12 +14,11 @@ RoxygenNote: 6.1.1
 Depends:
     R (>= 3.1.0)
 Imports:
-    knitr,
-    formatR,
-    magrittr,
     dplyr,
+    formatR,
+    knitr,
+    magrittr,
     purrr,
-    devtools,
     remotes,
     yaml
 URL: https://github.com/cole-brokamp/automagic
