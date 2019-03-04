@@ -19,8 +19,8 @@ automagic <- function(directory=getwd()) {
     automagic::install_deps_file(directory=directory)
   } else {
     message('no deps.yaml file found in specified directory')
-    message('parsing code and installing packages based on best guess')
-    pkgs <- get_dependent_packages(directory)
-    sapply(pkgs,install_package_guess)
+    message('parsing code and creating a deps.yaml file now')
+    make_deps_file(directory)
+    message('please review deps.yaml and rerun automagic() to install packages specified from this file')
   }
 }
