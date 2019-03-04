@@ -7,16 +7,12 @@
 
 Parse R code for required packages and install them. Optionally control which package versions to install using a `deps.yaml` file that can be created manually or automatically created based on a directory of R source files and the versions and sources of packages found in the local R library.
 
-## Installation  
+## Installation
 
 Install the latest stable version (0.3) from CRAN with `install.packages('automagic')`.  
 Install the latest development version from GitHub with `remotes::install_github('cole-brokamp/automagic')`.
 
 ## Using
-
-### Without A Dependencies File
-
-To make sure R has all the required packages before running any R code, run `automagic::automagic()`. If there is no `deps.yaml` file present, `automagic` searches all `.R` and `.Rmd` files in the current working directory for necessary packages and installs their latest versions. If the package is not on CRAN, it will attempt to install it from GitHub based on a best guess. If running in an interactive R session, the user is prompted whether or not to install the "best guess" GitHub package. 
 
 ### With A Dependencies File
 
@@ -36,6 +32,10 @@ An example `deps.yaml` file looks like
 ```
 
 The dependencies file could also be created or changed manually if necessary. For example, you could create a list of packages that you frequently depend on and when moving to a new machine or server, run `automagic::automagic()` to install them all.
+
+### Without A Dependencies File
+
+To make sure R has all the required packages before running any R code, run `automagic::automagic()`. If there is no `deps.yaml` file present, `automagic` searches all `.R` and `.Rmd` files in the current working directory for necessary packages and creates a `deps.yaml` file. Review this file to see what packages will be installed and rerun `automagic::automagic()` to install all packages in the file.
 
 ## Details
 
