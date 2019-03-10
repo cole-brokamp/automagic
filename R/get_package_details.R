@@ -10,7 +10,12 @@
 #'   "Package", "GithubUsername", "GithubRepo", "GithubRef", and "GithubSHA1" for Github packages.
 #' @importFrom utils packageDescription
 #' @export
+
 get_package_details <- function(pkg_name) {
+  if (!requireNamespace(pkg_name, quietly = TRUE)){
+      warning('skipping ', pkg_name, ' because it is not installed')
+      return(invisible(NULL))
+  }
   pkg_d <- packageDescription(pkg_name)
   is.cran <- !is.null(pkg_d$Repository) && pkg_d$Repository == 'CRAN'
   is.github <- !is.null(pkg_d$GithubRepo)
