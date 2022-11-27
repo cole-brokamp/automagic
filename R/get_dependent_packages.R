@@ -10,6 +10,7 @@
 get_dependent_packages <- function(directory = getwd()) {
   fls <- list.files(path=directory,pattern='^.*\\.R$|^.*\\.Rmd$',
                     full.names=TRUE,recursive=TRUE,ignore.case=TRUE)
+  fls <- fls[!grepl("renv", fls)]
   pkg_names <- unlist(sapply(fls,parse_packages))
   pkg_names <- unique(pkg_names)
   if (length(pkg_names)==0) {
